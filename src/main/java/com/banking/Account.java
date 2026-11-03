@@ -30,5 +30,8 @@ public class Account {
         this.Balance=this.Balance.subtract(amount);
 
     }
+    public BigDecimal getBalance() {
+        return this.Balance;
+    }
 
 }
