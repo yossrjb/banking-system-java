@@ -20,5 +20,8 @@ public class Transaction {
     public String toString() {
         return this.type + "|" + this.amount + "|" + this.date;
     }
+    public String getType() {
+        return type;
+    }
 
 }

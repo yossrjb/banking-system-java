@@ -25,19 +25,20 @@ public class Account {
     }
     public void withdraw(BigDecimal amount) {
         //the money withdrawn from the bank
-        if(amount==null){
-            throw new IllegalArgumentException("you cannot withdraw a null amount");
-        }
-        if(amount.compareTo(BigDecimal.ZERO)<=0){
-            throw new IllegalArgumentException("you cannot withdraw a negative amount");
-        }
-        if (this.Balance.subtract(amount).compareTo(BigDecimal.ZERO)<=0){
-            throw new IllegalArgumentException("you don't have enough balance");
+        if (amount == null) {
+            throw new IllegalArgumentException("Amount cannot be null");
         }
 
-        this.Balance=this.Balance.subtract(amount);
-        this.AccountTransactions.add(new Transaction("withdraw",amount));
+        if (amount.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("Amount must be positive");
+        }
 
+        if (amount.compareTo(this.Balance) > 0) {
+            throw new IllegalArgumentException("Insufficient funds");
+        }
+
+        this.Balance = this.Balance.subtract(amount);
+        this.AccountTransactions.add(new Transaction("withdraw", amount));
     }
     public BigDecimal getBalance() {
         return this.Balance;
@@ -51,5 +52,6 @@ public class Account {
         recipient.deposit(amount);
 
     }
+
 
 }
